@@ -1,0 +1,18 @@
+.campo-texto {
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.campo-texto label {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.campo-texto input {
+  border: none;
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  padding: 12px;
+}
