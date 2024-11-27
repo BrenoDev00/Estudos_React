@@ -1,7 +1,6 @@
 .campo-texto {
   display: flex;
   flex-flow: column;
-  align-items: flex-start;
   gap: 5px;
 }
 
