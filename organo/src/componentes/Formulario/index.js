@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./Formulario.css";
 import CampoTexto from "../CampoTexto";
 import ListaSuspensa from "../ListaSuspensa";
@@ -14,9 +15,13 @@ const Formulario = () => {
     "Inovação e Gestão",
   ];
 
+  const [nome, setNome] = useState("");
+  const [cargo, setCargo] = useState("");
+  const [imagem, setImagem] = useState("");
+
   const aoSalvar = (evento) => {
     evento.preventDefault();
-    console.log("Formulário submetido.");
+    console.log("Valores submetidos: ", nome, cargo, imagem);
   };
 
   return (
@@ -24,16 +29,28 @@ const Formulario = () => {
       <form onSubmit={aoSalvar}>
         <h1>Preencha os dados parar criar o card do colaborador.</h1>
         <CampoTexto
+          valor={nome}
+          aoAlterar={(valor) => setNome(valor)}
           obrigatorio={true}
           label="Nome"
           placeholder="Digite seu nome"
         />
+
         <CampoTexto
+          valor={cargo}
+          aoAlterar={(valor) => setCargo(valor)}
           obrigatorio={true}
           label="Cargo"
           placeholder="Digite seu cargo"
         />
-        <CampoTexto label="Imagem" placeholder="Informe o endereço da imagem" />
+
+        <CampoTexto
+          valor={imagem}
+          aoAlterar={(valor) => setImagem(valor)}
+          label="Imagem"
+          placeholder="Informe o endereço da imagem"
+        />
+
         <ListaSuspensa obrigatorio={true} label="Time" itens={times} />
         <Botao>Criar card</Botao>
       </form>
