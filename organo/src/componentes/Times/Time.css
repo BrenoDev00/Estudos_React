@@ -1,3 +1,9 @@
+.time{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 .time {
   text-align: center;
 
