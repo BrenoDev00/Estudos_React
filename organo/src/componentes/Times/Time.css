@@ -1,12 +1,12 @@
 .time {
   text-align: center;
-  background-color: #d9f7e9;
+
   padding: 32px;
 }
 
 .time h2 {
   font-size: 32px;
-  border-bottom: 4px solid #57c278;
+  border-bottom: 4px solid;
   display: inline-block;
   padding-bottom: 9px;
 }
