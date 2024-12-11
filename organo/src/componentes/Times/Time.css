@@ -1,12 +1,5 @@
-.time{
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-}
-
 .time {
   text-align: center;
-
   padding: 32px;
 }
 
@@ -15,4 +8,11 @@
   border-bottom: 4px solid;
   display: inline-block;
   padding-bottom: 9px;
+}
+
+.colaboradores {
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+  align-items: center;
 }
