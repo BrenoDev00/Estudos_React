@@ -70,7 +70,9 @@ function App() {
           nome={time.nome}
           corSecundaria={time.corSecundaria}
           corPrimaria={time.corPrimaria}
-          colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
+          colaboradores={colaboradores.filter(
+            (colaborador) => colaborador.time === time.nome
+          )}
         />
       ))}
     </div>
