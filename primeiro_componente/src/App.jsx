@@ -1,12 +1,17 @@
 import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [number, setNumber] = useState(Math.random().toFixed(2));
+
+  const setRandomNumber = () => {
+    let randomNumber = Math.random().toFixed(2);
+    setNumber(randomNumber);
+  };
 
   return (
     <>
-      <h1>Olá mundo</h1>
-      <button onClick={() => setCount(count + 1)}>Contador: {count}</button>
+      <h1>Número Aleatório: {number}</h1>
+      <button onClick={setRandomNumber}>Trocar Número</button>
     </>
   );
 }
