@@ -1,3 +1,7 @@
-export const Subtitulo = (props) => {
-    return <h2>Outro número aleatório: {props.numeroAleatorio}</h2>
-}
+export const Subtitulo = ({ nome, idade, altura }) => {
+  return (
+    <h2>
+      Meu nome é {nome}, tenho {idade} anos e {altura}m de altura.
+    </h2>
+  );
+};

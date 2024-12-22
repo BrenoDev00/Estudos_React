@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <h1>Número Aleatório: {number}</h1>
-      <Subtitulo numeroAleatorio={number} />
+      <Subtitulo nome="Breno" idade={21} altura={1.7} />
       <button onClick={setRandomNumber}>Trocar Número</button>
     </>
   );
