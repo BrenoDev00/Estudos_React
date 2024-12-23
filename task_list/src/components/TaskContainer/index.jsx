@@ -1,11 +1,13 @@
+import { TaskItem } from "../TaskItem";
+
 export const TaskContainer = ({ taskList }) => {
   return (
     <main>
-      <div className="border-2 border-white">
+      <section className="border-2 border-white">
         {taskList.map((task) => (
-          <p key={task}>{task}</p>
+          <TaskItem key={task} task={task} />
         ))}
-      </div>
+      </section>
     </main>
   );
 };
