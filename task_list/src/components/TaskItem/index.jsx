@@ -1,6 +1,6 @@
 export const TaskItem = ({ task, removeTask }) => {
   return (
-    <article className="flex gap-4 justify-around items-center">
+    <article className="flex gap-4 justify-between items-center">
       <p>{task}</p>
       <button
         onClick={() => removeTask(task)}
