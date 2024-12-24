@@ -4,7 +4,6 @@ export const TaskInput = ({ addTask }) => {
   return (
     <div className="flex justify-between gap-2">
       <input
-        required={true}
         onInput={(event) => (newTask = event.target.value)}
         type="text"
         className="bg-slate-600 py-1 px-2 focus:outline-none grow"

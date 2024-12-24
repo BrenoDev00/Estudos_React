@@ -14,6 +14,6 @@ export const TaskContainer = ({ taskList, removeTask }) => {
       </section>
     </main>
   ) : (
-    "Aqui você verá suas tarefas cadastradas."
+    <p>Aqui você verá suas tarefas cadastradas.</p>
   );
 };
