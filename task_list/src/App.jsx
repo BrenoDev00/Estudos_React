@@ -4,12 +4,7 @@ import { TaskInput } from "./components/TaskInput";
 import { TaskContainer } from "./components/taskContainer";
 
 function App() {
-  const [taskList, setTaskList] = useState([
-    "Estudar",
-    "Ir ao mercado",
-    "Jogar futebol",
-    "Andar de skate",
-  ]);
+  const [taskList, setTaskList] = useState([]);
 
   const removeTask = (task) => {
     const newTaskList = [...taskList];

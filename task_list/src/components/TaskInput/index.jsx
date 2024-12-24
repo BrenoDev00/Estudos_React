@@ -8,10 +8,13 @@ export const TaskInput = ({ addTask }) => {
         onInput={(event) => (newTask = event.target.value)}
         type="text"
         className="bg-slate-600 py-1 px-2 focus:outline-none grow"
+        placeholder="Insira sua tarefa"
       />
 
       <button
-        onClick={() => addTask(newTask)}
+        onClick={() => {
+          if (newTask !== "") addTask(newTask);
+        }}
         type="button"
         className="bg-violet-900 p-2 rounded-md hover:bg-slate-600 "
       >
