@@ -1,19 +1,17 @@
 import { useState } from "react";
+import { CheckBox } from "../CheckBox";
 import { TaskItem } from "../TaskItem";
 
 export const TaskContainer = ({ taskList, removeTask }) => {
   const [checked, setChecked] = useState(false);
 
   return taskList.length > 0 ? (
-    <main className="-translate-y-6">
-      <input
-        type="checkbox"
-        name="border-bottom"
-        id="border-btn"
+    <main className="-translate-y-6 flex flex-col gap-2">
+      <CheckBox
         checked={checked}
-        onClick={() => setChecked(!checked)}
+        setChecked={setChecked}
+        label="Habilitar linhas"
       />
-      <label htmlFor="border-bottom">Habilitar linhas</label>
 
       <section className="border-2 border-violet-900 w-[500px] flex flex-col gap-3 p-3">
         {taskList.map((task, index) => (
