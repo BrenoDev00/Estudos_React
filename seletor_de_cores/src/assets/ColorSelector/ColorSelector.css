@@ -1,0 +1,24 @@
+section {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+button {
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+}
+
+.red {
+  background-color: rgb(143, 9, 9);
+}
+.blue {
+  background-color: rgb(6, 6, 100);
+}
+.green {
+  background-color: rgb(4, 68, 4);
+}
+.yellow {
+  background-color: rgb(104, 104, 5);
+}
