@@ -1,4 +1,4 @@
-import React from "react";
+import Task from "./Task";
 
 function List() {
   const tasks = [
@@ -18,12 +18,7 @@ function List() {
 
       <ul className="text-white flex flex-col gap-4 mt-[20px]">
         {tasks.map((task, index) => {
-          return (
-            <li key={index} className="bg-slate-600 p-4 rounded-md">
-              <h3 className="text-xl ">{task.name}</h3>
-              <span className="text-xl">{task.time}</span>
-            </li>
-          );
+          return <Task key={index} task={task.name} time={task.time} />;
         })}
       </ul>
     </aside>
