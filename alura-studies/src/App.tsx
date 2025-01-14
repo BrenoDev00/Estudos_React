@@ -4,10 +4,15 @@ import List from "./components/List";
 
 function App() {
   return (
-    <>
-      <Form />
-      <List />
-    </>
+    <div className="w-screen h-screen bg-black flex justify-center items-center">
+      <div>
+        <Form />
+
+        <div className="mt-[70px]">
+          <List />
+        </div>
+      </div>
+    </div>
   );
 }
 

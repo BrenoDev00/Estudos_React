@@ -14,14 +14,14 @@ function List() {
 
   return (
     <aside>
-      <h2>Estudos do dia</h2>
+      <h2 className="text-white text-2xl text-center">Estudos do dia</h2>
 
-      <ul>
+      <ul className="text-white flex flex-col gap-4 mt-[20px]">
         {tasks.map((task, index) => {
           return (
-            <li key={index}>
-              <h3>{task.name}</h3>
-              <span>{task.time}</span>
+            <li key={index} className="bg-slate-600 p-4 rounded-md">
+              <h3 className="text-xl ">{task.name}</h3>
+              <span className="text-xl">{task.time}</span>
             </li>
           );
         })}
