@@ -1,7 +1,10 @@
 import React from "react";
 import Button from "../Button";
+import { TaskInterface } from "../../types/task";
 
-class Form extends React.Component {
+class Form extends React.Component<{
+  setTask: React.Dispatch<React.SetStateAction<TaskInterface[]>>;
+}> {
   state = {
     task: "",
     time: "00:00",
@@ -9,6 +12,7 @@ class Form extends React.Component {
 
   addTask(event: React.FormEvent) {
     event.preventDefault();
+    this.props.setTask((tasks) => [...tasks, { ...this.state }]);
   }
 
   render() {
@@ -53,7 +57,7 @@ class Form extends React.Component {
           />
         </div>
 
-        <Button text="Adicionar" />
+        <Button text="Adicionar" type="submit" />
       </form>
     );
   }
