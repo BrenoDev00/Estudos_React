@@ -5,7 +5,7 @@ import { Timer } from "./components/Timer";
 function App() {
   return (
     <div className="w-screen h-screen bg-black flex justify-center items-center">
-      <div className="flex gap-4">
+      <div className="flex gap-6">
         <div>
           <Form />
 
