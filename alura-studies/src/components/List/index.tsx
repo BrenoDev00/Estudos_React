@@ -1,5 +1,5 @@
 import Task from "./Task";
-import { TaskInterface } from "../../types/task";
+import { TaskInterface } from "../../types/task.type";
 
 function List({ task }: { task: TaskInterface[] }) {
   return (

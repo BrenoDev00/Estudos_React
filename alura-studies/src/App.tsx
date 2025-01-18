@@ -2,7 +2,7 @@ import { useState } from "react";
 import Form from "./components/Form";
 import List from "./components/List";
 import { Timer } from "./components/Timer";
-import { TaskInterface } from "./types/task";
+import { TaskInterface } from "./types/task.type";
 
 function App() {
   const [task, setTask] = useState<TaskInterface[]>([]);

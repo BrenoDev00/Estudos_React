@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import { TaskInterface } from "../../types/task";
+import { TaskInterface } from "../../types/task.type";
 
 class Form extends React.Component<{
   setTask: React.Dispatch<React.SetStateAction<TaskInterface[]>>;
@@ -12,7 +12,15 @@ class Form extends React.Component<{
 
   addTask(event: React.FormEvent) {
     event.preventDefault();
-    this.props.setTask((tasks) => [...tasks, { ...this.state }]);
+    this.props.setTask((tasks) => [
+      ...tasks,
+      { ...this.state, selected: false, completed: false, id: Date.now() },
+    ]);
+
+    this.setState({
+      task: "",
+      time: "00:00",
+    });
   }
 
   render() {
