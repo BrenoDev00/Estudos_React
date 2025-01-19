@@ -3,5 +3,5 @@ export interface TaskInterface {
   time: string;
   selected: boolean;
   completed: boolean;
-  id: Date;
+  id: string;
 }

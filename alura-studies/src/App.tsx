@@ -6,6 +6,11 @@ import { TaskInterface } from "./types/task.type";
 
 function App() {
   const [task, setTask] = useState<TaskInterface[]>([]);
+  const [selecionado, setSelecionado] = useState<TaskInterface>();
+
+  function selectTask(selectedTask: TaskInterface) {
+    setSelecionado(selectedTask);
+  }
 
   return (
     <div className="w-screen h-screen bg-black flex justify-center items-center">
@@ -19,7 +24,7 @@ function App() {
         </div>
 
         <div>
-          <List task={task} />
+          <List task={task} selectTask={selectTask}/>
         </div>
       </div>
     </div>
