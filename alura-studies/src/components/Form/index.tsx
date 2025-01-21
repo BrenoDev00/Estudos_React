@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import { TaskInterface } from "../../types/task.type";
+import { TaskInterface } from "../../types/components/Task.type";
 
 class Form extends React.Component<{
   setTask: React.Dispatch<React.SetStateAction<TaskInterface[]>>;

@@ -1,5 +1,5 @@
 import Task from "./Task";
-import { TaskInterface } from "../../types/task.type";
+import { TaskInterface } from "../../types/components/Task.type";
 
 interface Props {
   task: TaskInterface[];

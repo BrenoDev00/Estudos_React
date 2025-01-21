@@ -1,4 +1,4 @@
-import { TaskInterface } from "../../../types/task.type";
+import { TaskInterface } from "../../../types/components/Task.type";
 
 interface Props extends TaskInterface {
   selectTask: (selectedTask: TaskInterface) => void;
@@ -7,7 +7,9 @@ interface Props extends TaskInterface {
 function Task({ task, time, selected, completed, id, selectTask }: Props) {
   return (
     <li
-      className="bg-slate-600 px-4 py-2 rounded-md min-w-[50px] text-center"
+      className={`${
+        selected ? "bg-slate-900" : ""
+      } bg-slate-600 px-4 py-2 rounded-md min-w-[50px] text-center`}
       onClick={() =>
         selectTask({
           task,
