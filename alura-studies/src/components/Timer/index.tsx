@@ -13,6 +13,15 @@ export function Timer({ selected }: TimerInterface) {
     }
   }, [selected]);
 
+  function countdown(counter: number = 0) {
+    setTimeout(() => {
+      if (counter > 0) {
+        setTime(counter - 1);
+        return countdown(counter - 1);
+      }
+    }, 1000);
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <p className="text-white text-xl">
@@ -24,7 +33,7 @@ export function Timer({ selected }: TimerInterface) {
       <div>
         <Watch time={time} />
       </div>
-      <Button text="Começar" />
+      <Button onClick={() => countdown(time)} text="Começar" />
     </div>
   );
 }
