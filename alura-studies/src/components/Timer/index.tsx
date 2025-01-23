@@ -22,7 +22,7 @@ export function Timer({ selected }: TimerInterface) {
       {time && <p className="text-white text-xl">Tempo: {time}</p>}
 
       <div>
-        <Watch />
+        <Watch time={time} />
       </div>
       <Button text="Começar" />
     </div>
