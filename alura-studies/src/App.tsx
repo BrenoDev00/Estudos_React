@@ -18,6 +18,25 @@ function App() {
     );
   }
 
+  function finishTask() {
+    if (selectedTask) {
+      setSelectedTask(undefined)
+
+      setTask((tasks) =>
+        tasks.map((task) => {
+          if (task.id === selectedTask.id) {
+            return {
+              ...task,
+              selected: false,
+              completed: true,
+            };
+          }
+          return task;
+        })
+      );
+    }
+  }
+
   return (
     <div className="w-screen h-screen bg-black flex justify-center items-center">
       <div className="flex gap-6">
@@ -25,7 +44,7 @@ function App() {
           <Form setTask={setTask} />
 
           <div className="mt-10">
-            <Timer selected={selectedTask} />
+            <Timer selected={selectedTask} finishTask={finishTask}/>
           </div>
         </div>
 

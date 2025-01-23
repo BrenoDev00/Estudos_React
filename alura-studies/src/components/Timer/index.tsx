@@ -4,7 +4,7 @@ import { Watch } from "./Watch";
 import { TimerInterface } from "../../types/components/Timer.type";
 import { timeToSeconds } from "../../common/utils/time";
 
-export function Timer({ selected }: TimerInterface) {
+export function Timer({ selected, finishTask }: TimerInterface) {
   const [time, setTime] = useState<number>();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ export function Timer({ selected }: TimerInterface) {
         setTime(counter - 1);
         return countdown(counter - 1);
       }
+      finishTask();
     }, 1000);
   }
 
@@ -27,8 +28,6 @@ export function Timer({ selected }: TimerInterface) {
       <p className="text-white text-xl">
         Escolha um card e inicie o cronômetro
       </p>
-
-      {time && <p className="text-white text-xl">Tempo: {time}</p>}
 
       <div>
         <Watch time={time} />

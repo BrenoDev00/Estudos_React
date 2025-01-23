@@ -7,8 +7,8 @@ interface Props extends TaskInterface {
 function Task({ task, time, selected, completed, id, selectTask }: Props) {
   return (
     <li
-      className={`${
-        selected ? "bg-slate-900" : ""
+      className={`${selected ? "bg-slate-900" : ""} ${
+        completed ? "bg-green-800" : ""
       } bg-slate-600 px-4 py-2 rounded-md min-w-[50px] text-center`}
       onClick={() =>
         selectTask({
@@ -20,8 +20,11 @@ function Task({ task, time, selected, completed, id, selectTask }: Props) {
         })
       }
     >
-      <h3 className="text-xl ">{task}</h3>
-      <span className="text-xl">{time}</span>
+      <div className="flex flex-col gap">
+        <h3 className="text-xl ">{task}</h3>
+        <span className="text-xl">{time}</span>
+        {completed && <span>Tarefa completa</span>}
+      </div>
     </li>
   );
 }
