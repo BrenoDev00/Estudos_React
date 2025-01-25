@@ -6,7 +6,7 @@ import product5Img from "../../assets/images/product-5.jpg";
 import product6Img from "../../assets/images/product-6.jpg";
 import product7Img from "../../assets/images/product-7.jpg";
 import product8Img from "../../assets/images/product-8.jpg";
-import { CatalogInterface } from "../../types/components/catalog";
+import { CatalogInterface } from "../types/utils/catalog";
 
 export const catalog: CatalogInterface[] = [
   {
