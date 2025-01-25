@@ -1,11 +1,11 @@
-import product1Img from "../assets/images/product-1.jpg";
-import product2Img from "../assets/images/product-2.jpg";
-import product3Img from "../assets/images/product-3.jpg";
-import product4Img from "../assets/images/product-4.jpg";
-import product5Img from "../assets/images/product-5.jpg";
-import product6Img from "../assets/images/product-6.jpg";
-import product7Img from "../assets/images/product-7.jpg";
-import product8Img from "../assets/images/product-8.jpg";
+import product1Img from "../../assets/images/product-1.jpg";
+import product2Img from "../../assets/images/product-2.jpg";
+import product3Img from "../../assets/images/product-3.jpg";
+import product4Img from "../../assets/images/product-4.jpg";
+import product5Img from "../../assets/images/product-5.jpg";
+import product6Img from "../../assets/images/product-6.jpg";
+import product7Img from "../../assets/images/product-7.jpg";
+import product8Img from "../../assets/images/product-8.jpg";
 import { CatalogInterface } from "../../types/components/catalog";
 
 export const catalog: CatalogInterface[] = [
