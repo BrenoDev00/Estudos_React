@@ -1,4 +1,5 @@
 import { CatalogInterface } from "../../types/utils";
+import { FaCartPlus } from "react-icons/fa6";
 
 export const ProductCard = ({
   id,
@@ -19,6 +20,10 @@ export const ProductCard = ({
       <p className="mx-4 text-sm text-slate-400">{brand}</p>
       <p className="mx-4 text-sm">{name}</p>
       <p className="mx-4 text-sm text-green-700">{price}</p>
+
+      <button className="bg-slate-950 rounded-md mx-4 my-1 text-slate-100 flex justify-center py-1 hover:bg-slate-800">
+        <FaCartPlus />
+      </button>
     </article>
   );
 };
