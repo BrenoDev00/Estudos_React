@@ -1,0 +1,28 @@
+header {
+  background-color: rgb(34, 30, 30);
+  color: rgb(81, 79, 189);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+}
+
+ul {
+  display: flex;
+  gap: 15px;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.border-bottom {
+  border-bottom: 1px solid rgb(81, 79, 189);
+}
