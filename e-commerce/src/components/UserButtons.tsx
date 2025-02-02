@@ -1,4 +1,5 @@
 import { FaUser, FaShoppingBag } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const UserButtons = () => {
   return (
@@ -14,9 +15,9 @@ export const UserButtons = () => {
         </div>
       </button>
 
-      <a>
+      <Link to={"/history"}>
         <FaUser />
-      </a>
+      </Link>
     </div>
   );
 };
