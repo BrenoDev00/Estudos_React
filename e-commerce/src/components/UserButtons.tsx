@@ -1,10 +1,17 @@
+import { useContext } from "react";
+import { CartContext } from "../contexts";
 import { FaUser, FaShoppingBag } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 export const UserButtons = () => {
+  const cartInfo = useContext(CartContext);
+
   return (
     <div className="flex gap-4 items-center">
-      <button className="px-2 relative">
+      <button
+        className="px-2 relative cursor-pointer"
+        onClick={() => cartInfo.setIsCartOpen(!cartInfo.isCartOpen)}
+      >
         <FaShoppingBag />
 
         <div
