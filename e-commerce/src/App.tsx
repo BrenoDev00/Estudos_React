@@ -7,7 +7,9 @@ import { Routes, Route } from "react-router-dom";
 import { CartContext } from "./contexts";
 
 function App() {
-  const [isCartOpen, setIsCartOpen] = useState<boolean>(true);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
+
+  const [cartItems, setCartItems] = useState<object>({});
 
   return (
     <CartContext.Provider value={{ isCartOpen, setIsCartOpen }}>

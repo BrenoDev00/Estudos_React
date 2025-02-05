@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts";
+
 export const CartOverlay = () => {
   const cartInfo = useContext(CartContext);
 
