@@ -4,6 +4,10 @@ import { CartContext } from "../../contexts";
 export const CartOverlay = () => {
   const cartInfo = useContext(CartContext);
 
+  if (!cartInfo) {
+    throw new Error("Não deve receber um valor indefinido.");
+  }
+
   return (
     <div
       className={`h-screen w-screen fixed top-0 left-0 flex justify-end z-50 ease-in-out duration-200 ${

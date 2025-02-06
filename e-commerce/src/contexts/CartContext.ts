@@ -1,7 +1,7 @@
 import { createContext } from "react";
-import { CartContextInterface } from "../types/hooks";
+import { CartContextInterface } from "../types/contexts";
 
-export const CartContext = createContext<CartContextInterface | boolean>(false);
+export const CartContext = createContext<CartContextInterface | undefined>(undefined);
 
 export const getAmmountOfItemsInCart = (cartItemsObject: object) => {
   let amount: number = 0;

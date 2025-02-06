@@ -6,6 +6,10 @@ import { Link } from "react-router-dom";
 export const UserButtons = () => {
   const cartInfo = useContext(CartContext);
 
+  if (!cartInfo) {
+    throw new Error("Não deve receber um valor indefinido.");
+  }
+
   const [amountOfItems, setAmountOfItems] = useState<number>(0);
 
   return (
