@@ -1,1 +1,1 @@
-export * from "./cartContext.type";
+export * from "./cart-context.type";

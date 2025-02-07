@@ -5,14 +5,26 @@ import { PurchaseHistory } from "./pages/PurchaseHistory/PurchaseHistory";
 import { Checkout } from "./pages/Checkout/Checkout";
 import { Routes, Route } from "react-router-dom";
 import { CartContext } from "./contexts";
+import { CartItemsInterface } from "./types/cart-items.type";
 
 function App() {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
-  const [cartItems, setCartItems] = useState<object>({});
+  const [cartItems, setCartItems] = useState<CartItemsInterface>({});
+
+  const addToCart = (productID: number) => {
+    const updatedCart = {
+      ...cartItems,
+      [productID]: (cartItems[productID] ?? 0) + 1,
+    };
+
+    setCartItems(updatedCart);
+  };
 
   return (
-    <CartContext.Provider value={{ isCartOpen, setIsCartOpen }}>
+    <CartContext.Provider
+      value={{ isCartOpen, setIsCartOpen, cartItems, addToCart }}
+    >
       <Header />
 
       <Routes>
