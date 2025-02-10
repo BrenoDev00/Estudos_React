@@ -1,5 +1,6 @@
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"; //importa o useForm
 import { Button, Label, Fieldset, Input, Form, Titulo } from "../../components";
+import { ErrorMessage } from "../../components";
 
 interface FormProps {
   nome: string;
@@ -10,7 +11,11 @@ interface FormProps {
 }
 
 const CadastroPessoal = () => {
-  const { register, handleSubmit } = useForm<FormProps>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }, // formState para lidar com erros de validação de inputs
+  } = useForm<FormProps>();
 
   const aoSubmeter = (dados: FormProps) => {
     console.log(dados);
@@ -39,6 +44,8 @@ const CadastroPessoal = () => {
             type="text"
             {...register("nome", { required: true, minLength: 3 })}
           />
+
+          {errors.nome && <ErrorMessage>Mínimo 3 caracteres</ErrorMessage>}
         </Fieldset>
 
         <Fieldset>
@@ -49,6 +56,8 @@ const CadastroPessoal = () => {
             type="email"
             {...register("email", { required: true, validate: validarEmail })}
           />
+
+          {errors.email && <ErrorMessage>Insira um e-mail válido</ErrorMessage>}
         </Fieldset>
 
         <Fieldset>
@@ -62,6 +71,10 @@ const CadastroPessoal = () => {
               pattern: /^\(\d{2}\) \d{4,5}-\d{4}$/,
             })}
           />
+
+          {errors.telefone && (
+            <ErrorMessage>Informe o número de telefone</ErrorMessage>
+          )}
         </Fieldset>
 
         <Fieldset>
