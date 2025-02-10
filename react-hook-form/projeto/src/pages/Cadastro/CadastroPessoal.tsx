@@ -1,20 +1,43 @@
 import { useForm } from "react-hook-form";
 import { Button, Label, Fieldset, Input, Form, Titulo } from "../../components";
 
+interface FormProps {
+  nome: string;
+  email: string;
+  telefone: string;
+  senha: string;
+  senhaVerificada: string;
+}
+
 const CadastroPessoal = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<FormProps>();
+
+  const aoSubmeter = (dados: FormProps) => {
+    console.log(dados);
+  };
+
+  function validarEmail(valor: string) {
+    const regex = /^[a-zA-Z0-9._%+-]+@alura\.com\.br$/;
+
+    if (!regex.test(valor)) {
+      console.error("formato de e-mail inválido.");
+      return false;
+    }
+
+    return true;
+  }
 
   return (
     <>
       <Titulo>Insira alguns dados básicos:</Titulo>
-      <Form>
+      <Form onSubmit={handleSubmit(aoSubmeter)}>
         <Fieldset>
           <Label htmlFor="campo-nome">Nome</Label>
           <Input
             id="campo-nome"
             placeholder="Digite seu nome completo"
             type="text"
-            {...register("nome")}
+            {...register("nome", { required: true, minLength: 3 })}
           />
         </Fieldset>
 
@@ -24,7 +47,7 @@ const CadastroPessoal = () => {
             id="campo-email"
             placeholder="Insira seu endereço de email"
             type="email"
-            {...register("email")}
+            {...register("email", { required: true, validate: validarEmail })}
           />
         </Fieldset>
 
@@ -34,7 +57,10 @@ const CadastroPessoal = () => {
             id="campo-telefone"
             type="text"
             placeholder="Ex: (DDD) XXXXX-XXXX"
-            {...register("telefone")}
+            {...register("telefone", {
+              required: true,
+              pattern: /^\(\d{2}\) \d{4,5}-\d{4}$/,
+            })}
           />
         </Fieldset>
 
@@ -44,7 +70,7 @@ const CadastroPessoal = () => {
             id="campo-senha"
             placeholder="Crie uma senha"
             type="password"
-            {...register("senha")}
+            {...register("senha", { required: true })}
           />
         </Fieldset>
 
@@ -54,7 +80,7 @@ const CadastroPessoal = () => {
             id="campo-senha-confirmacao"
             placeholder="Repita a senha anterior"
             type="password"
-            {...register("senhaVerificada")}
+            {...register("senhaVerificada", { required: true })}
           />
         </Fieldset>
 
