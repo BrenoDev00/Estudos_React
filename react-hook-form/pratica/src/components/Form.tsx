@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FormField } from "./FormField";
 import { Dropdown } from "./Dropdown";
 import { genders } from "../utils/genders";
@@ -9,8 +8,6 @@ import { useForm } from "react-hook-form";
 export const Form = (props: {
   onSubmitForm: (data: FormFieldsInterface) => void;
 }) => {
-  const [, setRegisteredUser] = useState<FormFieldsInterface | null>(null);
-
   const {
     register,
     handleSubmit,
@@ -18,8 +15,6 @@ export const Form = (props: {
   } = useForm<FormFieldsInterface>();
 
   const submitForm = (data: FormFieldsInterface) => {
-    setRegisteredUser(data);
-
     props.onSubmitForm(data);
   };
 
