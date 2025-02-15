@@ -42,10 +42,16 @@ const CadastroPessoal = () => {
             id="campo-nome"
             placeholder="Digite seu nome completo"
             type="text"
-            {...register("nome", { required: true, minLength: 3 })}
+            {...register("nome", {
+              required: "Esse campo é obrigatório", // personalizando mensagens de erro diferentes do mesmo input
+              minLength: {
+                value: 3,
+                message: "Mínimo 3 caracteres",
+              },
+            })}
           />
 
-          {errors.nome && <ErrorMessage>Mínimo 3 caracteres</ErrorMessage>}
+          {errors.nome && <ErrorMessage>{errors.nome.message}</ErrorMessage>}
         </Fieldset>
 
         <Fieldset>
@@ -54,10 +60,13 @@ const CadastroPessoal = () => {
             id="campo-email"
             placeholder="Insira seu endereço de email"
             type="email"
-            {...register("email", { required: true, validate: validarEmail })}
+            {...register("email", {
+              required: "Esse campo é obrigatório",
+              validate: validarEmail,
+            })}
           />
 
-          {errors.email && <ErrorMessage>Insira um e-mail válido</ErrorMessage>}
+          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </Fieldset>
 
         <Fieldset>
@@ -67,13 +76,16 @@ const CadastroPessoal = () => {
             type="text"
             placeholder="Ex: (DDD) XXXXX-XXXX"
             {...register("telefone", {
-              required: true,
-              pattern: /^\(\d{2}\) \d{4,5}-\d{4}$/,
+              required: "Esse campo é obrigatório",
+              pattern: {
+                value: /^\(\d{2}\) \d{4,5}-\d{4}$/,
+                message: "Formato incorreto para telefone",
+              },
             })}
           />
 
           {errors.telefone && (
-            <ErrorMessage>Informe o número de telefone</ErrorMessage>
+            <ErrorMessage>{errors.telefone.message}</ErrorMessage>
           )}
         </Fieldset>
 
@@ -83,8 +95,16 @@ const CadastroPessoal = () => {
             id="campo-senha"
             placeholder="Crie uma senha"
             type="password"
-            {...register("senha", { required: true })}
+            {...register("senha", {
+              required: "Esse campo é obrigatório",
+              minLength: {
+                value: 6,
+                message: "Mínimo 6 caracteres",
+              },
+            })}
           />
+
+          {errors.senha && <ErrorMessage>{errors.senha.message}</ErrorMessage>}
         </Fieldset>
 
         <Fieldset>
