@@ -3,5 +3,6 @@ export interface FormFieldsInterface {
   email: string;
   phone: string;
   password: string;
+  passwordVerified: string;
   gender: string;
 }

@@ -12,10 +12,20 @@ export const Form = (props: {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormFieldsInterface>();
 
   const submitForm = (data: FormFieldsInterface) => {
     props.onSubmitForm(data);
+  };
+
+  const passwordField = watch("password");
+
+  const validatePassword = {
+    required: (value: string) => !!value || "Campo obrigatório",
+    minLength: (value: string) => value.length >= 6 || "Mínimo 6 caracteres",
+    samePassword: (value: string) =>
+      value === passwordField || "As senhas não coincidem",
   };
 
   return (
@@ -36,10 +46,16 @@ export const Form = (props: {
                 label="Nome"
                 type="text"
                 id="name"
-                register={register("name", { required: true, minLength: 3 })}
+                register={register("name", {
+                  required: "Campo obrigatório",
+                  minLength: {
+                    value: 3,
+                    message: "Mínimo 3 caracteres",
+                  },
+                })}
               />
 
-              {errors.name && <ErrorMessage message="mínimo 3 caracteres" />}
+              {errors.name && <ErrorMessage message={errors.name.message} />}
             </div>
 
             <div className="flex flex-col gap grow">
@@ -47,11 +63,52 @@ export const Form = (props: {
                 label="E-mail"
                 type="email"
                 id="email"
-                register={register("email", { required: true })}
+                register={register("email", {
+                  required: "Campo obrigatório",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@mail\.com$/,
+                    message: "Insira um formato de e-mail válido",
+                  },
+                })}
               />
 
-              {errors.email && (
-                <ErrorMessage message="informe um e-mail válido" />
+              {errors.email && <ErrorMessage message={errors.email.message} />}
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex flex-col gap grow">
+              <FormField
+                label="Senha"
+                type="password"
+                id="password"
+                register={register("password", {
+                  required: "Campo obrigatório",
+                  minLength: {
+                    value: 6,
+                    message: "Mínimo 6 caracteres",
+                  },
+                })}
+              />
+
+              {errors.password && (
+                <ErrorMessage message={errors.password.message} />
+              )}
+            </div>
+
+            <div className="flex flex-col gap grow">
+              <FormField
+                label="Senha Verificada"
+                type="password"
+                id="password-verified"
+                register={register("passwordVerified", {
+                  required: "Campo obrigatório",
+                  validate: validatePassword,
+                })}
+              />
+
+              {errors.passwordVerified && (
+                <ErrorMessage message={errors.passwordVerified.message} />
               )}
             </div>
           </div>
@@ -62,37 +119,24 @@ export const Form = (props: {
                 label="Telefone"
                 type="tel"
                 id="phone"
-                register={register("phone", { required: true })}
+                register={register("phone", { required: "Campo obrigatório" })}
               />
 
-              {errors.phone && (
-                <ErrorMessage message="informe um telefone válido" />
+              {errors.phone && <ErrorMessage message={errors.phone.message} />}
+            </div>
+
+            <div className="flex flex-col gap grow basis-[190px]">
+              <Dropdown
+                label="Gênero"
+                id="gender"
+                options={genders}
+                register={register("gender", { required: "Campo obrigatório" })}
+              />
+
+              {errors.gender && (
+                <ErrorMessage message={errors.gender.message} />
               )}
             </div>
-
-            <div className="flex flex-col gap grow">
-              <FormField
-                label="Senha"
-                type="password"
-                id="password"
-                register={register("password", { required: true })}
-              />
-
-              {errors.password && <ErrorMessage message="informe a senha" />}
-            </div>
-          </div>
-
-          <div className="self-center w-[350px] text-center">
-            <Dropdown
-              label="Gênero"
-              id="gender"
-              options={genders}
-              register={register("gender", { required: true })}
-            />
-
-            {errors.gender && (
-              <ErrorMessage message="escolha uma opção de gênero" />
-            )}
           </div>
         </div>
 

@@ -28,8 +28,8 @@ function App() {
             <h2 className="text-slate-200 text-2xl">Usuários cadastrados</h2>
 
             <div className="flex gap-6 mt-4 flex-wrap ">
-              {onRegisteredUser.map((user) => {
-                return <Card {...user} />;
+              {onRegisteredUser.map((user, index) => {
+                return <Card key={index} {...user} />;
               })}
             </div>
           </section>

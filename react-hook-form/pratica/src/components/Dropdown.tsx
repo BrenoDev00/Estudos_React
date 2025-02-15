@@ -20,10 +20,10 @@ export const Dropdown = (props: {
         className="border border-gray-600 text-slate-100 outline-none p-1"
       >
         <option className="bg-slate-800"></option>;
-        {options.map((gender) => {
+        {options.map((option, index) => {
           return (
-            <option key={gender} className="text-slate-200 bg-slate-800">
-              {gender}
+            <option key={index} className="text-slate-200 bg-slate-800">
+              {option}
             </option>
           );
         })}
