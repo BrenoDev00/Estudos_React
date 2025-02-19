@@ -13,10 +13,12 @@ export const Form = (props: {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm<FormFieldsInterface>();
 
   const submitForm = (data: FormFieldsInterface) => {
     props.onSubmitForm(data);
+    reset();
   };
 
   const passwordField = watch("password");
