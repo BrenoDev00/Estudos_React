@@ -2,6 +2,7 @@ import { useForm, Controller } from "react-hook-form"; //importa o useForm
 import { Button, Label, Fieldset, Input, Form, Titulo } from "../../components";
 import { ErrorMessage } from "../../components";
 import InputMask from "../../components/InputMask";
+import { useEffect } from "react";
 
 interface FormProps {
   nome: string;
@@ -15,13 +16,29 @@ const CadastroPessoal = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }, // formState para lidar com erros de validação de inputs
+    formState: { errors, isSubmitSuccessful }, // formState para lidar com erros de validação de inputs
     watch,
     control,
-  } = useForm<FormProps>();
+    reset,
+  } = useForm<FormProps>({
+    mode: "all",
+    defaultValues: {
+      nome: "",
+      email: "",
+      telefone: "",
+      senha: "",
+      senhaVerificada: "",
+    },
+  });
+
+  useEffect(() => {
+    reset();
+  }, [reset, isSubmitSuccessful]);
 
   const aoSubmeter = (dados: FormProps) => {
-    console.log(dados);
+    alert(`Dados enviados: ${JSON.stringify(dados)}`);
+
+    reset();
   };
 
   function validarEmail(valor: string) {
