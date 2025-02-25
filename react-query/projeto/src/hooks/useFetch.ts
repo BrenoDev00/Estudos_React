@@ -3,6 +3,7 @@ import axios from "axios";
 
 export function useFetch<T>(url: string) {
   const [data, setData] = useState<T | null>(null);
+  const [isFetching, setIsFetching] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -10,13 +11,14 @@ export function useFetch<T>(url: string) {
         const response = await axios.get(url);
 
         setData(response.data);
+        setIsFetching(false);
       } catch (error) {
         console.error(error);
       }
     }
 
     fetchData();
-  }, []);
+  }, [url]);
 
-  return { data };
+  return { data, isFetching };
 }

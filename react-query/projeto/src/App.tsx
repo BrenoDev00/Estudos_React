@@ -6,12 +6,14 @@ type RepositoryType = {
 };
 
 function App() {
-  const { data } = useFetch<RepositoryType[]>(
+  const { data, isFetching } = useFetch<RepositoryType[]>(
     "https://api.github.com/users/BrenoDev00/repos"
   );
 
   return (
     <>
+      {isFetching && <p>Carregando...</p>}
+
       {data?.map((item) => {
         return (
           <li key={item.full_name}>
