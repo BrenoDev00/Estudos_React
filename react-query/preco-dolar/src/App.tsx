@@ -1,7 +1,28 @@
+import { useState } from "react";
+import { FormEvent } from "react";
 import { useDollar } from "./hooks/useDollar";
+import { usePostData } from "./hooks/usePostData";
 
 function App() {
   const { dollarPrice } = useDollar();
+  const { postData } = usePostData();
+
+  const [nameField, setNameField] = useState<string>("");
+  const [ageField, setAgeField] = useState<string>("");
+
+  async function submitForm(event: FormEvent) {
+    event.preventDefault();
+
+    const data = {
+      nameField,
+      ageField,
+    };
+
+    await postData(data);
+
+    setNameField("");
+    setAgeField("");
+  }
 
   return (
     <>
@@ -13,6 +34,8 @@ function App() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexFlow: "column",
+          gap: "50px",
           color: "white",
         }}
       >
@@ -40,6 +63,56 @@ function App() {
               </p>
             </div>
           </div>
+        </section>
+
+        <section>
+          <form
+            onSubmit={(event) => submitForm(event)}
+            method="post"
+            style={{
+              border: "1px solid white",
+              padding: "15px",
+              display: "flex",
+              flexFlow: "column",
+              gap: "10px",
+            }}
+          >
+            <h2>Form de dados</h2>
+
+            <div>
+              <div>
+                <label htmlFor="nome">Nome </label>
+              </div>
+
+              <input
+                onInput={(event) => setNameField(event.currentTarget.value)}
+                value={nameField}
+                type="text"
+                id="nome"
+                name="nome"
+                required
+                style={{ padding: "5px", fontSize: "18px" }}
+              />
+            </div>
+
+            <div>
+              <div>
+                <label htmlFor="idade">Idade </label>
+              </div>
+
+              <input
+                onInput={(event) => setAgeField(event.currentTarget.value)}
+                value={ageField}
+                type="number"
+                id="idade"
+                name="idade"
+                required
+                style={{ padding: "5px", fontSize: "18px" }}
+              />
+            </div>
+
+            <button type="submit">enviar dados</button>
+          </form>
         </section>
       </main>
     </>
