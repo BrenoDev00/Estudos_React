@@ -1,4 +1,5 @@
-import { useFetch } from "./hooks/useFetch";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 type RepositoryType = {
   full_name: string;
@@ -6,22 +7,32 @@ type RepositoryType = {
 };
 
 function App() {
-  const { data, isFetching } = useFetch<RepositoryType[]>(
-    "https://api.github.com/users/BrenoDev00/repos"
-  );
+  const { data, isFetching } = useQuery<RepositoryType[]>({
+    queryKey: ["repos"],
+
+    queryFn: async () => {
+      const response = await axios.get(
+        "https://api.github.com/users/BrenoDev00/repos"
+      );
+
+      return response.data;
+    },
+  });
 
   return (
     <>
       {isFetching && <p>Carregando...</p>}
 
-      {data?.map((item) => {
-        return (
-          <li key={item.full_name}>
-            <strong>{item.full_name}</strong>
-            <p>{item.description}</p>
-          </li>
-        );
-      })}
+      <ul>
+        {data?.map((item: RepositoryType) => {
+          return (
+            <li key={item.full_name}>
+              <strong>{item.full_name}</strong>
+              <p>{item.description}</p>
+            </li>
+          );
+        })}
+      </ul>
     </>
   );
 }
