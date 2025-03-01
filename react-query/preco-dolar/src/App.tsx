@@ -1,15 +1,10 @@
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { FormEvent } from "react";
+import { useGetDollar } from "./hooks/dollar";
 import { usePostData } from "./hooks/usePostData";
-import axios from "axios";
-
-type DollarType = {
-  high: number;
-  low: number;
-};
 
 function App() {
+  const { data, isLoading, isError } = useGetDollar();
   const { postData } = usePostData();
 
   const [nameField, setNameField] = useState<string>("");
@@ -29,20 +24,11 @@ function App() {
     setAgeField("");
   }
 
-  const { data, isFetching } = useQuery<DollarType>({
-    queryKey: ["dollar"],
-    queryFn: async () => {
-      const response = await axios.get(
-        "https://economia.awesomeapi.com.br/json/last/USD-BRL"
-      );
-
-      return response.data.USDBRL;
-    },
-  });
-
   return (
     <>
-      {isFetching && <div>Carregando...</div>}
+      {isLoading && <p>Carregando...</p>}
+
+      {isError && <p>Erro inesperado. Tente novamente</p>}
 
       <main
         style={{
