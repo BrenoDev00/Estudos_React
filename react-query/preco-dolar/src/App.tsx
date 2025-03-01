@@ -1,10 +1,15 @@
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { FormEvent } from "react";
-import { useDollar } from "./hooks/useDollar";
 import { usePostData } from "./hooks/usePostData";
+import axios from "axios";
+
+type DollarType = {
+  high: number;
+  low: number;
+};
 
 function App() {
-  const { dollarPrice } = useDollar();
   const { postData } = usePostData();
 
   const [nameField, setNameField] = useState<string>("");
@@ -24,8 +29,21 @@ function App() {
     setAgeField("");
   }
 
+  const { data, isFetching } = useQuery<DollarType>({
+    queryKey: ["dollar"],
+    queryFn: async () => {
+      const response = await axios.get(
+        "https://economia.awesomeapi.com.br/json/last/USD-BRL"
+      );
+
+      return response.data.USDBRL;
+    },
+  });
+
   return (
     <>
+      {isFetching && <div>Carregando...</div>}
+
       <main
         style={{
           height: "100dvh",
@@ -55,11 +73,11 @@ function App() {
 
             <div>
               <p style={{ fontSize: "18px" }}>
-                Preço Máximo: R$ {Number(dollarPrice?.high).toFixed(2)}
+                Preço Máximo: R$ {Number(data?.high).toFixed(2)}
               </p>
 
               <p style={{ fontSize: "18px" }}>
-                Preço Mínimo: R$ {Number(dollarPrice?.low).toFixed(2)}
+                Preço Mínimo: R$ {Number(data?.low).toFixed(2)}
               </p>
             </div>
           </div>
