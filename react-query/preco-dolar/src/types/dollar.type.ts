@@ -1,4 +1,4 @@
-export type DollarType = {
+type DollarType = {
   high: number;
   low: number;
 };

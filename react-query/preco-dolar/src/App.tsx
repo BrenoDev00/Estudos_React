@@ -1,24 +1,21 @@
 import { useState } from "react";
 import { FormEvent } from "react";
 import { useGetDollar } from "./hooks/dollar";
-import { usePostData } from "./hooks/usePostData";
+import { usePostData } from "./hooks/post-data";
 
 function App() {
   const { data, isLoading, isError } = useGetDollar();
-  const { postData } = usePostData();
+  const { mutation } = usePostData();
 
   const [nameField, setNameField] = useState<string>("");
   const [ageField, setAgeField] = useState<string>("");
 
-  async function submitForm(event: FormEvent) {
+  function submitForm(event: FormEvent) {
     event.preventDefault();
 
-    const data = {
-      nameField,
-      ageField,
-    };
+    mutation.mutate({ nameField, ageField });
 
-    await postData(data);
+    if (mutation.isSuccess) alert("Formulário enviado com sucesso!");
 
     setNameField("");
     setAgeField("");
@@ -69,9 +66,13 @@ function App() {
           </div>
         </section>
 
+        {mutation.isPending && <p>Carregando...</p>}
+
+        {mutation.isError && <p>Erro inesperado. Tente novamente</p>}
+
         <section>
           <form
-            onSubmit={(event) => submitForm(event)}
+            onSubmit={submitForm}
             method="post"
             style={{
               border: "1px solid white",
