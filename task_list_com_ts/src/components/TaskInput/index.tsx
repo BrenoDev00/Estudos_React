@@ -7,6 +7,7 @@ export const TaskInput = ({ addTask }: TaskInputInterface) => {
   return (
     <section className="flex gap-2 mt-[30px] justify-between">
       <input
+        data-test="task-input"
         type="text"
         placeholder="digite sua task"
         onInput={(event) => {
@@ -17,6 +18,7 @@ export const TaskInput = ({ addTask }: TaskInputInterface) => {
       />
 
       <Button
+        dataTest="task-register-button"
         label="Cadastrar"
         onClick={() => {
           if (newTask.length > 0) {

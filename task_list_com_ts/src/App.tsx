@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="w-screen h-screen bg-slate-900 flex flex-col items-center">
       <main className="mt-[10%] w-[500px]">
-        <h1 className="text-white text-3xl text-center">Lista de tarefas</h1>
+        <h1 data-test="main-title" className="text-white text-3xl text-center">Lista de tarefas</h1>
 
         <TaskInput addTask={addTask} />
 
