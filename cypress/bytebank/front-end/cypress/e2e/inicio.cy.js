@@ -6,7 +6,7 @@ describe('Página inicial', () => {
   });
 
   it('Deve renderizar a tag h1 com o texto correto', () => {
-    // get: obter elemento pelo DOM; should('exist'): verifica se um elemento está renderizado no DOM; contains: verifica a existência de determinado texto.
+    // contains: verifica a existência de determinado texto.
     cy.getByDataTest('titulo-principal').contains(
       'Experimente mais liberdade no controle da sua vida financeira. Crie sua conta com a gente!'
     );
