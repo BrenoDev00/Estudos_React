@@ -1,13 +1,13 @@
 import { Button } from "../Button";
 import { TaskInputInterface } from "../../types/TaskInput.type";
 
-export const TaskInput = ({ addTask }: TaskInputInterface) => {
+export const TaskInput = ({ addTask, dataTest }: TaskInputInterface) => {
   let newTask: string = "";
 
   return (
     <section className="flex gap-2 mt-[30px] justify-between">
       <input
-        data-test="task-input"
+        data-test={dataTest}
         type="text"
         placeholder="digite sua task"
         onInput={(event) => {
