@@ -16,9 +16,11 @@ const schemaCadastro = z
   .object({
     nome: z.string().min(5, "Informe pelo menos 5 letras"),
     email: z.string().email("Informe um e-mail válido").toLowerCase(),
-    telefone: z.string(),
+    telefone: z
+      .string()
+      .regex(/^\(\d{2,3}\) \d{5}-\d{4}$/, "Informe um telefone válido"),
     senha: z.string().min(6, "Informe pelo menos 6 caracteres"),
-    senhaVerificada: z.string().min(1, "Campo obrigatório"),
+    senhaVerificada: z.string(),
   })
   .refine((data) => data.senha === data.senhaVerificada, {
     message: "Os campos não coincidem",
