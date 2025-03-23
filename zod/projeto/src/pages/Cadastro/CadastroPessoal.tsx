@@ -12,13 +12,18 @@ import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-const schemaCadastro = z.object({
-  nome: z.string().min(5, "Informe pelo menos 5 letras"),
-  email: z.string().email("Informe um e-mail válido"),
-  telefone: z.string(),
-  senha: z.string().min(6, "Informe pelo menos 6 caracteres"),
-  senhaVerificada: z.string().min(1, "Campo obrigatório"),
-});
+const schemaCadastro = z
+  .object({
+    nome: z.string().min(5, "Informe pelo menos 5 letras"),
+    email: z.string().email("Informe um e-mail válido").toLowerCase(),
+    telefone: z.string(),
+    senha: z.string().min(6, "Informe pelo menos 6 caracteres"),
+    senhaVerificada: z.string().min(1, "Campo obrigatório"),
+  })
+  .refine((data) => data.senha === data.senhaVerificada, {
+    message: "Os campos não coincidem",
+    path: ["senhaVerificada"],
+  });
 
 type FormInputTipos = z.infer<typeof schemaCadastro>;
 
