@@ -13,11 +13,11 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const schemaCadastro = z.object({
-  nome: z.string().min(5),
-  email: z.string(),
+  nome: z.string().min(5, "Informe pelo menos 5 letras"),
+  email: z.string().email("Informe um e-mail válido"),
   telefone: z.string(),
-  senha: z.string(),
-  senhaVerificada: z.string(),
+  senha: z.string().min(6, "Informe pelo menos 6 caracteres"),
+  senhaVerificada: z.string().min(1, "Campo obrigatório"),
 });
 
 type FormInputTipos = z.infer<typeof schemaCadastro>;
