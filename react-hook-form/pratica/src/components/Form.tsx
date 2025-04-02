@@ -1,33 +1,27 @@
 import { FormField } from "./FormField";
 import { Dropdown } from "./Dropdown";
 import { genders } from "../utils/genders";
-import { FormFieldsInterface } from "../types/form-fields.type";
 import { ErrorMessage } from "./ErrorMessage";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormSchemaType } from "../types/schemas/form-schema.type";
+import { formSchema } from "../schemas/form-schema";
 
 export const Form = (props: {
-  onSubmitForm: (data: FormFieldsInterface) => void;
+  onSubmitForm: (data: FormSchemaType) => void;
 }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
-  } = useForm<FormFieldsInterface>();
+  } = useForm<FormSchemaType>({
+    resolver: zodResolver(formSchema),
+  });
 
-  const submitForm = (data: FormFieldsInterface) => {
+  const submitForm = (data: FormSchemaType) => {
     props.onSubmitForm(data);
     reset();
-  };
-
-  const passwordField = watch("password");
-
-  const validatePassword = {
-    required: (value: string) => !!value || "Campo obrigatório",
-    minLength: (value: string) => value.length >= 6 || "Mínimo 6 caracteres",
-    samePassword: (value: string) =>
-      value === passwordField || "As senhas não coincidem",
   };
 
   return (
@@ -48,13 +42,7 @@ export const Form = (props: {
                 label="Nome"
                 type="text"
                 id="name"
-                register={register("name", {
-                  required: "Campo obrigatório",
-                  minLength: {
-                    value: 3,
-                    message: "Mínimo 3 caracteres",
-                  },
-                })}
+                register={register("name")}
               />
 
               {errors.name && <ErrorMessage message={errors.name.message} />}
@@ -65,13 +53,7 @@ export const Form = (props: {
                 label="E-mail"
                 type="email"
                 id="email"
-                register={register("email", {
-                  required: "Campo obrigatório",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@mail\.com$/,
-                    message: "Insira um formato de e-mail válido",
-                  },
-                })}
+                register={register("email")}
               />
 
               {errors.email && <ErrorMessage message={errors.email.message} />}
@@ -84,13 +66,7 @@ export const Form = (props: {
                 label="Senha"
                 type="password"
                 id="password"
-                register={register("password", {
-                  required: "Campo obrigatório",
-                  minLength: {
-                    value: 6,
-                    message: "Mínimo 6 caracteres",
-                  },
-                })}
+                register={register("password")}
               />
 
               {errors.password && (
@@ -103,10 +79,7 @@ export const Form = (props: {
                 label="Senha Verificada"
                 type="password"
                 id="password-verified"
-                register={register("passwordVerified", {
-                  required: "Campo obrigatório",
-                  validate: validatePassword,
-                })}
+                register={register("passwordVerified")}
               />
 
               {errors.passwordVerified && (
@@ -119,9 +92,9 @@ export const Form = (props: {
             <div className="flex flex-col gap grow">
               <FormField
                 label="Telefone"
-                type="tel"
+                type="text"
                 id="phone"
-                register={register("phone", { required: "Campo obrigatório" })}
+                register={register("phone")}
               />
 
               {errors.phone && <ErrorMessage message={errors.phone.message} />}
@@ -132,7 +105,7 @@ export const Form = (props: {
                 label="Gênero"
                 id="gender"
                 options={genders}
-                register={register("gender", { required: "Campo obrigatório" })}
+                register={register("gender")}
               />
 
               {errors.gender && (

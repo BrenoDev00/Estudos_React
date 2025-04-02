@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Form } from "./components/Form";
 import { Card } from "./components/Card";
-import { FormFieldsInterface } from "./types/form-fields.type";
+import { FormSchemaType } from "./types/schemas/form-schema.type";
 
 function App() {
-  const [onRegisteredUser, setOnRegisteredUser] = useState<
-    FormFieldsInterface[]
-  >([]);
+  const [onRegisteredUser, setOnRegisteredUser] = useState<FormSchemaType[]>(
+    []
+  );
 
-  const registerUser = (user: FormFieldsInterface) => {
+  const registerUser = (user: FormSchemaType) => {
     const newUsers = [...onRegisteredUser, user];
 
     setOnRegisteredUser(newUsers);
