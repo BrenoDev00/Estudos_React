@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FormEvent } from "react";
-import { useGetDollar } from "./hooks/dollar";
-import { usePostData } from "./hooks/post-data";
+import { useGetDollar } from "./hooks/use-get-dollar";
+import { usePostData } from "./hooks/use-post-data";
 
 function App() {
   const { data, isLoading, isError } = useGetDollar();
