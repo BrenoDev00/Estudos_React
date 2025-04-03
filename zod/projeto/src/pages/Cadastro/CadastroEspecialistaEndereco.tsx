@@ -22,6 +22,9 @@ import { useCallback, useEffect } from "react";
 const schemaCadastroEnderecoEspecialista = z.object({
   endereco: z.object({
     cep: z.string().min(8, "Informe um CEP válido"),
+    avatar: z
+      .instanceof(FileList, { message: "Insira um arquivo válido" })
+      .transform((lista) => lista.item(0) as File),
     rua: z.string().min(1, "Informe uma rua válida"),
     numero: z.coerce.number().min(1, "Informe um número válido"),
     bairro: z.string().min(1, "Informe um bairro válido"),
@@ -49,6 +52,11 @@ const CadastroEspecialistaEndereco = () => {
     formState: { errors },
   } = useForm<FormEnderecoEspecialista>({
     resolver: zodResolver(schemaCadastroEnderecoEspecialista),
+    defaultValues: {
+      endereco: {
+        avatar: new File([""], "name.jpg", { type: "image/jpeg" }),
+      },
+    },
   });
 
   function aoSubmeter(dados: FormEnderecoEspecialista) {
@@ -92,8 +100,16 @@ const CadastroEspecialistaEndereco = () => {
           <UploadLabel htmlFor="campo-upload">
             <UploadIcon />
             <UploadDescription>Clique para enviar</UploadDescription>
-            <UploadInput accept="image/*" id="campo-upload" type="file" />
+            <UploadInput
+              accept="image/*"
+              id="campo-upload"
+              type="file"
+              {...register("endereco.avatar")}
+            />
           </UploadLabel>
+          {errors.endereco?.avatar && (
+            <ErrorMessage>{errors.endereco.avatar.message}</ErrorMessage>
+          )}
         </>
 
         <Divisor />
