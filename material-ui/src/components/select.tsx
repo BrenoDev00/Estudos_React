@@ -42,6 +42,8 @@ export const SelectComponent = () => {
           ];
         })}
       </Select>
+
+      {option && <output>selected option: {option}</output>}
     </>
   );
 };
