@@ -1,5 +1,5 @@
 import { ButtonGroup } from "@mui/material";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 
 export const ButtonGroups = () => {
   return (

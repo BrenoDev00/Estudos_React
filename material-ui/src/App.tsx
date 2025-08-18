@@ -4,7 +4,8 @@ import { Autocompletes } from "./components/autocomplete";
 import { ButtonGroups } from "./components/button-group";
 import { CheckboxComponent } from "./components/checkbox";
 import { SelectComponent } from "./components/select";
-
+import { SwitchComponent } from "./components/switch";
+import { TextFieldComponent } from "./components/text-field";
 function App() {
   return (
     <>
@@ -29,6 +30,10 @@ function App() {
         <CheckboxComponent />
 
         <SelectComponent />
+
+        <SwitchComponent />
+
+        <TextFieldComponent />
       </div>
     </>
   );

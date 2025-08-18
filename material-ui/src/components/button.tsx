@@ -63,7 +63,7 @@ export const Buttons: React.FC = () => {
           Link Button
         </Button>
 
-        <div style={{ marginLeft: "10px" }}>Count is {count}</div>
+        <div style={{ marginTop: "10px" }}>Count is {count}</div>
       </div>
     </>
   );
