@@ -12,7 +12,7 @@ export const SwitchComponent = () => {
       <span>switch button</span>
       <Switch checked={checked} onChange={handleChange} />
 
-      {checked && <p>checked</p>}
+      <p>checked: {checked ? "true" : "false"} </p>
     </div>
   );
 };
