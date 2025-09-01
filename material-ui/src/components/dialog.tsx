@@ -10,6 +10,8 @@ export const DialogComponent = () => {
 
   return (
     <>
+      <h2>Dialog</h2>
+
       {selectedEmail && <p>Email selecionado: {selectedEmail}</p>}
 
       <Button

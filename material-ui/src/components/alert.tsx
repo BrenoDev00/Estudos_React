@@ -10,6 +10,8 @@ export const AlertComponent = () => {
 
   return (
     <>
+      <h2>Alert</h2>
+
       {isSuccessAlertOpen && (
         <Alert
           severity="success"

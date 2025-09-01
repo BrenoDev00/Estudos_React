@@ -5,6 +5,8 @@ export const BackdropComponent = () => {
 
   return (
     <>
+      <h2>Backdrop</h2>
+
       <Button
         variant="contained"
         color="primary"

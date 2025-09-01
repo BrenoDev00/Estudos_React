@@ -9,6 +9,7 @@ import { AlertComponent } from "./components/alert";
 import { TextFieldComponent } from "./components/text-field";
 import { BackdropComponent } from "./components/backdrop";
 import { DialogComponent } from "./components/dialog";
+import { SnackbarComponent } from "./components/snackbar";
 function App() {
   return (
     <>
@@ -43,6 +44,8 @@ function App() {
         <BackdropComponent />
 
         <DialogComponent />
+
+        <SnackbarComponent />
       </div>
     </>
   );
