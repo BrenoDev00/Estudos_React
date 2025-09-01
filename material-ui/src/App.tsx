@@ -7,6 +7,8 @@ import { SelectComponent } from "./components/select";
 import { SwitchComponent } from "./components/switch";
 import { AlertComponent } from "./components/alert";
 import { TextFieldComponent } from "./components/text-field";
+import { BackdropComponent } from "./components/backdrop";
+import { DialogComponent } from "./components/dialog";
 function App() {
   return (
     <>
@@ -37,6 +39,10 @@ function App() {
         <TextFieldComponent />
 
         <AlertComponent />
+
+        <BackdropComponent />
+
+        <DialogComponent />
       </div>
     </>
   );
