@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { Button } from "./shared/components/button";
 import "./App.css";
+import { useCountStore } from "./shared/stores/use-count-store";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const count = useCountStore((state) => state.count);
 
-  const incrementCount = () => setCount((prevCount) => prevCount + 1);
+  const incrementCount = useCountStore((state) => state.incrementCount);
 
-  const decrementCount = () => setCount(0);
+  const decrementCount = useCountStore((state) => state.decrementCount);
 
   return (
     <>
