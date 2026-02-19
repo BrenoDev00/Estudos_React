@@ -17,7 +17,7 @@ export const TaskList = ({ tasks, removeTask }: TaskListInterface) => {
         data-test="task-section"
         className="p-2 border-solid border-violet-800 border-2 text-white flex flex-col gap-4"
       >
-        {tasks.map((task: string, index: number) => {
+        {tasks.map((task, index) => {
           return (
             <Task
               dataTest="task-container"

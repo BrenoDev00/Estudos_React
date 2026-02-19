@@ -1,21 +1,21 @@
-import { useState } from "react";
 import { TaskInput } from "./components/TaskInput";
 import { TaskList } from "./components/TaskList";
+import { taskListStore } from "./stores/task-list-store";
 
 function App() {
-  const [tasks, setTasks] = useState<string[]>([]);
+  const { taskList, updateTaskList } = taskListStore();
 
-  function addTask(newTask: string) {
-    const taskList: string[] = [...tasks, newTask];
-    setTasks(taskList);
+  function handleAddTask(newTask: string) {
+    const updatedTaskList = [...taskList, newTask];
+    updateTaskList(updatedTaskList);
   }
 
-  function removeTask(taskRemoved: string) {
-    const taskList = [...tasks];
-    const taskIndex = taskList.indexOf(taskRemoved);
+  function handleRemoveTask(taskToRemove: string) {
+    const taskIndexToRemove = taskList.indexOf(taskToRemove);
 
-    taskList.splice(taskIndex, 1);
-    setTasks(taskList);
+    taskList.splice(taskIndexToRemove, 1);
+
+    updateTaskList(taskList);
   }
 
   return (
@@ -25,11 +25,11 @@ function App() {
           Lista de tarefas
         </h1>
 
-        <TaskInput addTask={addTask} dataTest="task-input" />
+        <TaskInput addTask={handleAddTask} dataTest="task-input" />
 
-        {tasks.length > 0 && (
+        {taskList.length > 0 && (
           <div className="mt-[30px]">
-            <TaskList tasks={tasks} removeTask={removeTask} />
+            <TaskList tasks={taskList} removeTask={handleRemoveTask} />
           </div>
         )}
       </main>
