@@ -7,7 +7,7 @@ function App() {
 
   function addTask(newTask: string) {
     const taskList: string[] = [...tasks, newTask];
-    return setTasks(taskList);
+    setTasks(taskList);
   }
 
   function removeTask(taskRemoved: string) {
@@ -15,7 +15,7 @@ function App() {
     const taskIndex = taskList.indexOf(taskRemoved);
 
     taskList.splice(taskIndex, 1);
-    return setTasks(taskList);
+    setTasks(taskList);
   }
 
   return (
